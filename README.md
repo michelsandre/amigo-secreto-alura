@@ -14,10 +14,10 @@ Javascript, HTML, CSS...
 
 ## 🕹 Uso/Exemplos
 
-#### Função de embaralhamento da lista de amigos
+#### Função de embaralhamento de array
 
 ```javascript
-function embaralhaAmigos(arr) {
+function embaralhaArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -25,46 +25,19 @@ function embaralhaAmigos(arr) {
 }
 ```
 
-#### Função para realizar o sorteio
-
-```javascript
-function realizaSorteio() {
-  arrAmigosSorteados.length = 0;
-
-  const arrAmigosEmbaralhados = arrAmigosIncluidos.slice();
-  embaralhaAmigos(arrAmigosEmbaralhados);
-  console.log(`Embaralhamento n: ${contador}`, arrAmigosEmbaralhados);
-
-  // Verifica se o amigo tirou ele mesmo e retorna o status falso ou verdadeiro
-  for (let i = 0; i < arrAmigosIncluidos.length; i++) {
-    if (arrAmigosEmbaralhados[i] == arrAmigosIncluidos[i]) {
-      return false;
-    }
-    // Se não tiver erro, adiciona na lista de sorteados
-    arrAmigosSorteados.push(arrAmigosEmbaralhados[i]);
-  }
-  return true;
-}
-```
-
-#### Função final de sortear
+#### Função de sorteio
 
 ```javascript
 function sortear() {
-  // Limpa lista de sorteios
   elemListaSorteio.innerHTML = "";
 
-  const sorteioBemSucedido = realizaSorteio();
-
-  if (sorteioBemSucedido) {
-    arrAmigosIncluidos.forEach((item, i) => {
-      elemListaSorteio.innerHTML += `${item} --> ${arrAmigosSorteados[i]}<br>`;
-    });
-    console.log("Amigos sorteados", arrAmigosSorteados);
-    contador = 1;
-  } else {
-    contador += 1;
-    sortear();
+  embaralhaArray(amigos);
+  for (i = 0; i < amigos.length; i++) {
+    if (i == amigos.length - 1) {
+      elemListaSorteio.innerHTML += `${amigos[i]} --> ${amigos[0]}<br>`;
+    } else {
+      elemListaSorteio.innerHTML += `${amigos[i]} --> ${amigos[i + 1]}<br>`;
+    }
   }
 }
 ```
