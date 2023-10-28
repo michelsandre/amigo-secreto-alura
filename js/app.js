@@ -14,8 +14,8 @@ let contador = 1;
 function adicionar() {
   // Adiciona participante na lista de amigos desde que o campo não esteja em vazio ou já adicionado
   const amigo = elemAmigo.value;
-  if (amigo && !arrAmigosIncluidos.includes(amigo)) {
-    arrAmigosIncluidos.push(amigo);
+  if (amigo && !arrAmigosIncluidos.includes(amigo.toUpperCase())) {
+    arrAmigosIncluidos.push(amigo.toUpperCase());
     elemListaAmigos.textContent = arrAmigosIncluidos.join(", ");
     elemAmigo.value = "";
   }
